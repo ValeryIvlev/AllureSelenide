@@ -1,19 +1,24 @@
 package org.example;
 
+
 import com.codeborne.selenide.Condition;
+
 import com.codeborne.selenide.logevents.SelenideLogger;
+
 import io.qameta.allure.selenide.AllureSelenide;
+
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selectors.withText;
-import static com.codeborne.selenide.Selenide.*;
-import static io.qameta.allure.Allure.attachment;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
-import static org.example.Lambda.ISSUE;
-import static org.example.Lambda.REPOSITORY;
 import static org.openqa.selenium.By.linkText;
 
-public class Attach {
+public class LambdaTest {
+
+    public static final String REPOSITORY = "eroshenkoam/allure-example";
+    public static final int ISSUE = 80;
 
 
     @Test
@@ -22,7 +27,6 @@ public class Attach {
 
         step("Открываем главную страницу", () -> {
             open("https://github.com");
-            attachment("Source", webdriver().driver().source());
         });
 
         step("Поиск " + REPOSITORY, () -> {
@@ -38,15 +42,15 @@ public class Attach {
         });
 
     }
+
     @Test
     void testAnnotatedSteps() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         WebSteps steps = new WebSteps();
 
         steps.openMainPage();
-        steps.attachScreen();
-
+        steps.sreachForRepo(REPOSITORY);
+        steps.sreachIssue(ISSUE);
 
     }
 }
-
