@@ -24,20 +24,18 @@ public class AttachmentsTest {
             open("https://github.com");
             attachment("Source", webdriver().driver().source());
         });
-
         step("Поиск " + REPOSITORY, () -> {
             $(".header-search-input").click();
             $(".header-search-input").sendKeys(REPOSITORY);
             $(".header-search-input").submit();
             $(linkText(REPOSITORY)).click();
         });
-
         step("Проверка наличия" + ISSUE + "в выдаче", () -> {
             $("#issues-tab").click();
             $(withText("#" + ISSUE)).should(Condition.exist);
         });
-
     }
+    
     @Test
     void testAnnotatedSteps() {
         SelenideLogger.addListener("allure", new AllureSelenide());
@@ -45,8 +43,5 @@ public class AttachmentsTest {
 
         steps.openMainPage();
         steps.attachScreen();
-
-
     }
 }
-
