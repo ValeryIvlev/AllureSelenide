@@ -13,6 +13,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.openqa.selenium.By.linkText;
 
 public class SelenideTestAllure {
+    
     @BeforeEach
     void setUp() {
         Configuration.holdBrowserOpen = true;
@@ -32,6 +33,4 @@ public class SelenideTestAllure {
         $("#issues-tab").click();
         $(withText("#80 ")).should(Condition.exist);
     }
-
-
 }
