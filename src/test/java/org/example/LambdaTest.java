@@ -20,7 +20,6 @@ public class LambdaTest {
     public static final String REPOSITORY = "eroshenkoam/allure-example";
     public static final int ISSUE = 80;
 
-
     @Test
     void testSelenide() {
         SelenideLogger.addListener("allure", new AllureSelenide());
@@ -28,19 +27,16 @@ public class LambdaTest {
         step("Открываем главную страницу", () -> {
             open("https://github.com");
         });
-
         step("Поиск " + REPOSITORY, () -> {
             $(".header-search-input").click();
             $(".header-search-input").sendKeys(REPOSITORY);
             $(".header-search-input").submit();
             $(linkText(REPOSITORY)).click();
         });
-
         step("Проверка наличия" + ISSUE + "в выдаче", () -> {
             $("#issues-tab").click();
             $(withText("#" + ISSUE)).should(Condition.exist);
         });
-
     }
 
     @Test
